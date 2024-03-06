@@ -10,5 +10,5 @@ Cara menggunakannya:
 <li>dan ketikkan lagi php artisan db:seed --class=DatabaseSeeder</li>
 <li>dan ketikkan lagi php artisan db:seed --class=DatabaseSeeder_movie</li>
 <li>jalankan xampp app atau jalankan script `php artisan serve` di cmd</li>
-<li>buka browser kemudian ketikkan localhost/be_movie/public <br>localhost:8000</li>
+<li>buka browser kemudian ketikkan localhost/be_movie/public <br>atau <br>localhost:8000</li>
 </ol>
