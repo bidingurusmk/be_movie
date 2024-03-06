@@ -1,4 +1,4 @@
-Cara menggunakannya:
+<h3 align="center">Cara menginstall project ini</h3>
 <ol>
     <li>buka cmd</li>
 <li>buat folder di xampp/htdocs dengan nama be_movie dengan mengetikkan mkdir be_movie</li>
