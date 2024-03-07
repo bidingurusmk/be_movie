@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('movie', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('voteaverage');
+            $table->double('voteaverage');
             $table->string('overview')->nullable();
             $table->string('posterpath')->nullable();;
             $table->timestamps();

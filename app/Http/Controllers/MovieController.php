@@ -10,15 +10,15 @@ class MovieController extends Controller
     function getMovie() {
         try{
             $Movie = Movie::select('id','title','voteaverage','overview','posterpath')->get();
-            return [
+            return Response()->json([
                 'status'=>true,
                 'data'=>$Movie,
-            ];
+            ]);
         } catch(Exception $e){
-            return [
+            return Response()->json([
                 'status'=>false,
                 'data'=>null,
-            ];
+            ]);
         }
         
     }
