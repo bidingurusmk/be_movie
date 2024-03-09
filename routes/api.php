@@ -14,7 +14,7 @@ use App\Http\Controllers\MovieController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
+header('Access-Control-Allow-Origin: *');
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
