@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Movie;
 use Validator;
+use Illuminate\Support\Facades\URL;
 
 class MovieController extends Controller
 {
@@ -41,7 +42,7 @@ class MovieController extends Controller
         $movie->title = $request->title;
         $movie->voteaverage = $request->voteaverage;
         $movie->overview = $request->overview;
-        $movie->posterpath = $imageName;
+        $movie->posterpath = URL('/').'/'.$imageName;
         try{   
             $movie->save();
             return Response()->json([
