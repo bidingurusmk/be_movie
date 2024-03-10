@@ -23,27 +23,46 @@ class MovieController extends Controller
             ]);
         }
     }
-    function insertMovie(Request $request) {
-        $validator = Validator::make($request->all(), [
-            'title' => 'required',
-            'voteaverage' => 'required',
-            'overview' => 'required',
-            'posterpath' => 'required|max:10000|mimes:jpg,jpeg,png'
-        ]);
+    function insertMovie(Request $request,$id=null) {
+        if($id==null){
+            $validator = Validator::make($request->all(), [
+                'title' => 'required',
+                'voteaverage' => 'required',
+                'overview' => 'required',
+                'posterpath' => 'required|max:10000|mimes:jpg,jpeg,png'
+            ]);
+        } else {
+            $validator = Validator::make($request->all(), [
+                'title' => 'required',
+                'voteaverage' => 'required',
+                'overview' => 'required',
+            ]);
+        }
+        
         if ($validator->fails()) {
             return $validator->errors();
         }
-        $file = request()->posterpath;
-        $imageName = time().'-'.$file->getClientOriginalName();
-        // $file->store('images', ['disk' => 'public_uploads']);
-        $uploadDir    = public_path().'/images';
-        $file->move($uploadDir, $imageName);
-        $movie = new Movie();
-        $movie->title = $request->title;
-        $movie->voteaverage = $request->voteaverage;
-        $movie->overview = $request->overview;
-        $movie->posterpath = URL('/').'/images/'.$imageName;
-        try{   
+        
+        try{  
+            if($id==null){
+                $movie = new Movie();
+            } else {
+                $movie = Movie::find($id);
+            }
+            $file = request()->posterpath;
+            if($file==''){
+            } else {
+                $imageName = time().'-'.$file->getClientOriginalName();
+                // $file->store('images', ['disk' => 'public_uploads']);
+                $uploadDir    = public_path().'/images';
+                $file->move($uploadDir, $imageName);
+                $movie->posterpath = URL('/').'/images/'.$imageName;
+            }
+            
+            $movie->title = $request->title;
+            $movie->voteaverage = $request->voteaverage;
+            $movie->overview = $request->overview;
+         
             $movie->save();
             return Response()->json([
                 'status'=>true,
