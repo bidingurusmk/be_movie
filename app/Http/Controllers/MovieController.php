@@ -42,7 +42,7 @@ class MovieController extends Controller
         $movie->title = $request->title;
         $movie->voteaverage = $request->voteaverage;
         $movie->overview = $request->overview;
-        $movie->posterpath = URL('/').'/public/images/'.$imageName;
+        $movie->posterpath = URL('/').'/images/'.$imageName;
         try{   
             $movie->save();
             return Response()->json([
