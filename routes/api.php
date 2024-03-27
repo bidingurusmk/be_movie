@@ -15,6 +15,8 @@ use App\Http\Controllers\MovieController;
 |
 */
 header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: Content-Type");        
+header("Access-Control-Allow-Methods: OPTIONS,POST,GET, PUT");
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
