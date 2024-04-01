@@ -49,7 +49,7 @@ class MovieController extends Controller
             } else {
                 $movie = Movie::find($id);
             }
-            $file = request()->posterpath;
+            $file = $request->posterpath;
             if($file==''||$file==null){
             } else {
                 $imageName = time().'-'.$file->getClientOriginalName();
