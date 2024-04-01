@@ -22,5 +22,6 @@ Route::group(['middleware' => 'cors'], function () {
     Route::get('/getmovie',[MovieController::class,'getMovie']);
     Route::post('/insertmovie',[MovieController::class,'insertMovie']);
     Route::post('/updatemovie/{id}',[MovieController::class,'insertMovie']);
+    Route::delete('/hapusmovie/{id}',[MovieController::class,'hapusMovie']);
 });
 

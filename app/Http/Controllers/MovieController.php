@@ -75,4 +75,19 @@ class MovieController extends Controller
             ]);
         }
     }
+    function hapusMovie($id) {
+        try{
+            Movie::where('id',$id)->delete();
+            return Response()->json([
+                'status'=>true,
+                'message'=>'Sukses hapus data movie',
+            ]);
+        }catch(Exception $e){
+            return Response()->json([
+                'status'=>false,
+                'message'=>'Gagal hapus data movie',
+            ]);
+        }
+        
+    }
 }
