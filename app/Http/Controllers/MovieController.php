@@ -50,7 +50,7 @@ class MovieController extends Controller
                 $movie = Movie::find($id);
             }
             $file = $request->posterpath;
-            if($request->hasFile('posterpath')){
+            if(!$request->hasFile('posterpath')){
             } else {
                 $imageName = time().'-'.$file->getClientOriginalName();
                 // $file->store('images', ['disk' => 'public_uploads']);
