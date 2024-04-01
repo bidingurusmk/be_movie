@@ -14,12 +14,9 @@ use App\Http\Controllers\MovieController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-header('Access-Control-Allow-Origin: *');
-header("Access-Control-Allow-Headers: Content-Type");        
-header("Access-Control-Allow-Methods: OPTIONS,POST,GET, PUT");
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/getmovie',[MovieController::class,'getMovie']);
-Route::post('/insertmovie',[MovieController::class,'insertMovie']);
-Route::post('/updatemovie/{id}',[MovieController::class,'insertMovie']);
+Route::get('/getmovie',[MovieController::class,'getMovie'])->middleware->cors;
+Route::post('/insertmovie',[MovieController::class,'insertMovie'])->middleware->cors;
+Route::post('/updatemovie/{id}',[MovieController::class,'insertMovie'])->middleware->cors;
