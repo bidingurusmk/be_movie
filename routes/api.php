@@ -19,8 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => 'cors'], function () {
-    Route::get('/getmovie',['middleware' => 'cors'],[MovieController::class,'getMovie']);
-    Route::post('/insertmovie',['middleware' => 'cors'],[MovieController::class,'insertMovie']);
-    Route::post('/updatemovie/{id}',['middleware' => 'cors'],[MovieController::class,'insertMovie']);
+    Route::get('/getmovie',[MovieController::class,'getMovie']);
+    Route::post('/insertmovie',[MovieController::class,'insertMovie']);
+    Route::post('/updatemovie/{id}',[MovieController::class,'insertMovie']);
 });
 
