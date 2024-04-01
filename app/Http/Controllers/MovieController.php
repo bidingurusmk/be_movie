@@ -52,11 +52,11 @@ class MovieController extends Controller
             $file = request()->posterpath;
             if($file==''){
             } else {
-                // $imageName = time().'-'.$file->getClientOriginalName();
-                // // $file->store('images', ['disk' => 'public_uploads']);
-                // $uploadDir    = public_path().'/images';
-                // $file->move($uploadDir, $imageName);
-                // $movie->posterpath = URL('/').'/images/'.$imageName;
+                $imageName = time().'-'.$file->getClientOriginalName();
+                // $file->store('images', ['disk' => 'public_uploads']);
+                $uploadDir    = public_path().'/images';
+                $file->move($uploadDir, $imageName);
+                $movie->posterpath = URL('/').'/images/'.$imageName;
             }
             
             $movie->title = $request->title;
