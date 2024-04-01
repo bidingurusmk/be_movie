@@ -17,6 +17,10 @@ use App\Http\Controllers\MovieController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/getmovie',['middleware' => 'cors'],[MovieController::class,'getMovie']);
-Route::post('/insertmovie',['middleware' => 'cors'],[MovieController::class,'insertMovie']);
-Route::post('/updatemovie/{id}',['middleware' => 'cors'],[MovieController::class,'insertMovie']);
+
+Route::group(['middleware' => 'cors'], function () {
+    Route::get('/getmovie',['middleware' => 'cors'],[MovieController::class,'getMovie']);
+    Route::post('/insertmovie',['middleware' => 'cors'],[MovieController::class,'insertMovie']);
+    Route::post('/updatemovie/{id}',['middleware' => 'cors'],[MovieController::class,'insertMovie']);
+});
+
