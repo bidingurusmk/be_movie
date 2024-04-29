@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
+use Hash;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -10,12 +13,15 @@ class AuthController extends Controller
         $credentials = request(['email', 'password']);
 
         if (!$token = auth()->guard('api')->setTTL(120)->attempt($credentials)) {
-            return Response()->json(['message'=>'Unauthorized']);
+            return Response()->json([
+                'message'=>'Anda gagal login, email dan password salah.',
+                'status'=>false,
+            ]);
         }
-
+        $data['status']=true;
         $data["token"] = $token;
         $user = User::where("email", request("email"))->first();
-        
+        $data['message']='Anda berhasil login';
         $data["user"] = [
             "id" => $user->id,
             "nama_user" => $user->name,
@@ -26,7 +32,7 @@ class AuthController extends Controller
         return Response()->json($data);
     }
     function register(Request $request) {
-        $validator = Validator::make($req->all(), [
+        $validator = Validator::make($request->all(), [
             'name'=>'required',
             'email'=>'required|unique:users',
             'role'=>'required',
@@ -45,8 +51,6 @@ class AuthController extends Controller
             'email'=>$request->get('email'),
             'password'=>Hash::make($request->get('password')),
             'role'=>$request->get('role'),
-            'created_by'=>@auth('api')->user()->id,
-            'updated_by'=>@auth('api')->user()->id
         ];
 
         try {
