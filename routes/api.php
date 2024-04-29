@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,5 +24,7 @@ Route::group(['middleware' => 'cors'], function () {
     Route::post('/insertmovie',[MovieController::class,'insertMovie']);
     Route::post('/updatemovie/{id}',[MovieController::class,'insertMovie']);
     Route::delete('/hapusmovie/{id}',[MovieController::class,'hapusMovie']);
+    Route::post('/auth/login',[AuthController::class,'login']);
+    Route::post('/auth/register',[AuthController::class,'register']);
 });
 
