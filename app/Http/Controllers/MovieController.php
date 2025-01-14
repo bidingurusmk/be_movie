@@ -14,11 +14,13 @@ class MovieController extends Controller
             $Movie = Movie::select('id','title','voteaverage','overview','posterpath')->get();
             return Response()->json([
                 'status'=>true,
+                'message'=>'success to load data',
                 'data'=>$Movie,
             ]);
         } catch(Exception $e){
             return Response()->json([
                 'status'=>false,
+                'message'=>'Failed to load data',
                 'data'=>null,
             ]);
         }
@@ -56,7 +58,8 @@ class MovieController extends Controller
                 // $file->store('images', ['disk' => 'public_uploads']);
                 $uploadDir    = public_path().'/images';
                 $file->move($uploadDir, $imageName);
-                $movie->posterpath = URL('/').'/images/'.$imageName;
+                // $movie->posterpath = URL('/').'/images/'.$imageName;
+                $movie->posterpath = 'images/'.$imageName;
             }
             
             $movie->title = $request->title;
@@ -75,6 +78,7 @@ class MovieController extends Controller
             ]);
         }
     }
+    
     function hapusMovie($id) {
         try{
             Movie::where('id',$id)->delete();
